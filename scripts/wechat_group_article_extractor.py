@@ -144,7 +144,10 @@ def write_jsonl(path: Path, records: Iterable[dict]) -> None:
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="从微信群聊天记录提取微信公众号文章链接并抓取内容")
+    parser = argparse.ArgumentParser(
+        description="从微信群聊天记录提取微信公众号文章链接并抓取内容",
+        epilog="示例: python scripts/wechat_group_article_extractor.py --chat-file chat.txt --output wechat_articles.jsonl --errors wechat_article_errors.jsonl --sleep 0.5",
+    )
     parser.add_argument("--chat-file", required=True, type=Path, help="微信群聊天记录文本文件")
     parser.add_argument("--output", type=Path, default=Path("wechat_articles.jsonl"), help="输出 JSONL 文件路径")
     parser.add_argument("--errors", type=Path, default=Path("wechat_article_errors.jsonl"), help="错误日志 JSONL 文件路径")
